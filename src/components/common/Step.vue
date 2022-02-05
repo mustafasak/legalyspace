@@ -1,11 +1,10 @@
 <template>
-    <div class="step">
+    <div class="step" :v-if="step > 1">
         <div class="step__text">Étape {{ valitedStep }} sur {{ totalSteps }}</div>
         <div class="step__group">
             <template v-for="step in totalSteps">
-                <div :v-if="step <= valitedStep"
-                     :key="step"
-                     class="step__item">{{state(step)}}</div>
+                <div :key="step"
+                    :class="[stateStep(step) ? 'step__item step__item-completed' :'step__item']"></div>
             </template>
         </div>
     </div>
@@ -28,7 +27,7 @@
             },
         },
         methods: {
-            state: function(step) {
+            stateStep: function(step) {
                 if (step <= this.valitedStep) {
                     return true;
                 } else {
@@ -44,7 +43,6 @@
         padding: 1em 0;
         font-weight: 400;
         font-size: 0.875em;
-        text-align: center;
     }
 
     .step__group {

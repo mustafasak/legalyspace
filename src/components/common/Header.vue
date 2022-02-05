@@ -6,7 +6,8 @@
                 alt="Logo LegalySpace" />
         </router-link>
         <div id="header__navigation">
-            <router-link to="/register">Inscription</router-link>
+            <router-link to="/Login">Connexion</router-link> |
+            <router-link to="/Register">Inscription</router-link>
         </div>
     </div>
 </template>
@@ -27,7 +28,7 @@
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
-        padding: 1em;
+        padding: 1em 1.5em;
     }
 
     .header__logo {
