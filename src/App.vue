@@ -179,7 +179,7 @@ export default {
   border-radius: 0.75em;
   padding: 1em 1.5em;
   font-weight: 400;
-  font-size: 0.875em;
+  font-size: 1em;
 }
 
 .form__input-radio {
@@ -195,7 +195,7 @@ export default {
 .form__input::placeholder {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 500;
-  font-size: 0.875em;
+  font-size: 1em;
 }
 
 .form__buttons-double .button:first-child {
