@@ -39,6 +39,10 @@
 </script>
 
 <style>
+    .step {
+        margin-top: 0.5em;
+    }
+
     .step__text {
         padding: 1em 0;
         font-weight: 400;
@@ -53,7 +57,7 @@
         width: 18%;
         margin: 0 2% 0 0;
         border-radius: 20px;
-        height: 4px;
+        height: 2px;
         background: var(--grayscale-input);
     }
     

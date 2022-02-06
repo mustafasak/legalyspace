@@ -6,7 +6,6 @@
         <div class="title__secondary"></div>
         </div>
         <p class="text__body">Renseignez vos identifiants pour vous connecter à votre espace légale, LegalySpace.</p>
-        
         <form class="form"
               @click.stop.prevent="submit"
               action="/register"
@@ -37,6 +36,8 @@
                         type="submit">Suivant</button>
             </div>
         </form>
+
+        <p class="text__body">Vous n'avez pas encore de compte ? <a class="link">Inscription</a></p>
     </div>
 </template>
 

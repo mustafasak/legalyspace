@@ -1,11 +1,15 @@
 <template>
-    <div class="login-form">
-        <div class="register__breadcrumbs">
+    <div class="register-account">
+        <div class="title__breadcrumbs">
         <h1 class="title__primary">Inscription</h1>
-        <div class="title__icon"></div>
+        <div class="title__icon">
+            <img class="header__breadcrumbs"
+                src="@/assets/breadcrumbs.png"
+                alt="Logo LegalySpace" />
+        </div>
         <div class="title__secondary">Mon compte</div>
         </div>
-        <p class="text__body">Nous allons activer votre compte ensemble, cela ne prendra que quelques secondes. Commencez par renseignez votre e-mail personnel et créez un nouveau mot de passe.</p>
+        <p class="text__body">Nous allons créer votre espace légale ensemble, commencez par renseignez votre e-mail personnel et créez un nouveau mot de passe.</p>
         <form class="form"
               action="/register"
               method="post"
@@ -15,7 +19,7 @@
                         for="email">Votre e-mail personnel</label>
                 <input class="form__input"
                         type="email"
-                        placeholder="exemple: prenom@mail.com"
+                        placeholder="Exemple: prenom@mail.com"
                         name="email"
                         v-model="email"
                         id="email" />
@@ -43,8 +47,7 @@
             <div class="form__buttons form__buttons-double layout__flex">
                 <button class="button button-prev"
                         type="Button"
-                        @click="prev"
-                        :disabled="goback ? '' : disabled">Précédent</button>
+                        @click="prev">Précédent</button>
                 <button class="button button-submit"
                         type="submit"
                         @click.stop.prevent="next">Suivant</button>
@@ -60,8 +63,7 @@ export default {
     data() {
         return {
             email: "",
-            password: "",
-            goback: false
+            password: ""
         }
     },
     methods: {

@@ -1,7 +1,18 @@
 <template>
 	<div class="register">
     <Step :step="currentStep"/>
-    <RegisterAccount @form="navigation"/>
+    <div v-if="currentStep == 1 || currentStep == 2">
+      <RegisterAccount @form="navigation"/>
+    </div>
+    <div v-else-if="currentStep == 3">
+      <RegisterInformations @form="navigation"/>
+    </div>
+    <div v-else-if="currentStep == 4">
+      <RegisterAdresse @form="navigation"/>
+    </div>
+    <div v-else-if="currentStep == 5">
+      <RegisterSign @form="navigation"/>
+    </div>
   </div>
 </template>
 
@@ -9,13 +20,19 @@
 import router from '../../router';
 import Step from '../../components/common/Step.vue';
 import RegisterAccount from './RegisterAccount.vue';
+import RegisterInformations from './RegisterInformations.vue';
+import RegisterAdresse from './RegisterAdresse.vue';
+import RegisterSign from './RegisterSign.vue';
 
 
 export default {
   name: 'Register',
   components: {
     Step,
-    RegisterAccount
+    RegisterAccount,
+    RegisterInformations,
+    RegisterAdresse,
+    RegisterSign
   },
   data() {
     return {
@@ -39,16 +56,10 @@ export default {
   methods: {
     navigation: function(value) {
       if (value == "prev") {
-        if (this.currentStep == 2 ) {
-          router.push({
-            path: '/login',
-          })
-        } else {
           router.push({
             path: '/register',
             query: { step: this.prevStep }
           })
-        }
       } else {
         router.push({
           path: '/register',
@@ -57,13 +68,17 @@ export default {
       }
     }
   },
-  mounted() {}
+  mounted() {
+    if (this.$route.query.step === undefined) {
+      router.push({
+          path: '/register',
+          query: { step: 1 }
+        })
+    }
+  }
 }
 </script>
 
 <style>
-  .register__breadcrumbs {
-    display: flex;
-    padding: 48px 0 32px 0;
-  }
+
 </style>

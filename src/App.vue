@@ -4,17 +4,21 @@
     <main class="layout__main">
       <router-view/>
     </main>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from '@/components/common/Header.vue';
+import Footer from '@/components/common/Footer.vue';
+
 import 'reset-css';
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Footer
   }
 }
 </script>
@@ -34,6 +38,7 @@ export default {
   color: var(--grayscale-body);
   --grayscale-ash: #1A1B1D;
   --grayscale-body: #484848;
+  --grayscale-placeholder: #A7A7A7;
   --grayscale-input: #E4E4E4;
   --grayscale-background: #F7F7F7;
   --primary-default: #FF5000;
@@ -56,13 +61,25 @@ export default {
   font-size: 1.25em;
   font-weight: bold;
   color: var(--grayscale-ash);
-  padding: 0 2em 0 0;
+  padding: 0.5em 1em 0.5em 0;
 }
 
 .title__secondary {
   font-size: 1.25em;
   font-weight: normal;
   color: var(--grayscale-ash);
+  padding: 0.5em 0 0.5em 1em;
+}
+
+.title__breadcrumbs {
+  display: flex;
+  padding: 1.5em 0 2em 0;
+  align-items: flex-start;
+}
+
+.title__icon {
+  display: block;
+  padding: 0.75em 0;
 }
 
 .text__body {
@@ -70,6 +87,12 @@ export default {
   font-size: 0.875em;
 }
 
+.link {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  text-decoration: underline;
+  color: var(--grayscale-ash);
+  font-weight: 600;
+}
 .form {
   padding: 2em 0;
 }
@@ -78,9 +101,23 @@ export default {
   padding: 0 0 1.5em 0;
 }
 
+.form__group-radio {
+  display: flex;
+}
+
+.form__radio {
+  display: flex;
+  align-items: center;
+}
+
+.form__radio:first-child {
+  margin-right: 2em;
+}
+
 .form__buttons {
   padding: 1.5em 0;
 }
+
 
 .form__label {
   font-weight: 500;
@@ -88,6 +125,14 @@ export default {
   color: var(--grayscale-ash);
   padding: 0.75em 0;
   display: block;
+  cursor: pointer;
+}
+
+.form__label-radio {
+  display: inline;
+  padding: 0 0 0 0.5em;
+  font-weight: normal;
+  color: var(--grayscale-placeholder);
 }
 
 .form__input {
@@ -99,6 +144,16 @@ export default {
   padding: 1em 1.5em;
   font-weight: 500;
   font-size: 0.875em;
+}
+
+.form__input-radio {
+  width: inherit;
+  margin: 0;
+}
+
+.form__input-radio:checked + .form__label-radio  {
+  color: var(--grayscale-ash);
+  font-weight: 500;
 }
 
 .form__input::placeholder {
