@@ -39,11 +39,12 @@ export default {
   --grayscale-ash: #1A1B1D;
   --grayscale-body: #484848;
   --grayscale-placeholder: #A7A7A7;
-  --grayscale-input: #E4E4E4;
+  --grayscale-input: #f7f7f7;
   --grayscale-background: #F7F7F7;
   --primary-default: #FF5000;
   --success-default: #00C637;
   --text-submit: white;
+  --text-link: #002f8d;
 }
 
 .layout__main {
@@ -89,8 +90,8 @@ export default {
 
 .text__body {
   line-height: 1.5em;
-  font-size: 0.875em;
-  padding: 0 0 1em 0;
+  font-size: 1em;
+  padding: 0 0 2em 0;
 }
 
 .text__body-nomargin {
@@ -105,8 +106,8 @@ export default {
 .link {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   text-decoration: underline;
-  color: var(--grayscale-ash);
-  font-weight: 600;
+  color: var(--text-link);
+  font-weight: 500;
 }
 
 .form {
@@ -114,7 +115,7 @@ export default {
 }
 
 .form__group {
-  padding: 0 0 1.5em 0;
+  padding: 0 0 1em 0;
 }
 
 .form__group-radio {
@@ -170,7 +171,7 @@ export default {
   border: 1px solid var(--grayscale-background);
   border-radius: 0.75em;
   padding: 1em 1.5em;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 0.875em;
 }
 
@@ -186,7 +187,7 @@ export default {
 
 .form__input::placeholder {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 0.875em;
 }
 
@@ -202,8 +203,8 @@ export default {
   border-radius: 0.875em;
   border: 0;
   width: 100%;
-  padding: 0.875em 2em; 
-  font-size: 0.875em;
+  padding: 1em 2em; 
+  font-size: 1em;
   cursor: pointer;
   text-align: center;
 }

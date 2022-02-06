@@ -76,8 +76,10 @@ export default {
 <style>
     .register-sign__document {
         background: var(--grayscale-background);
-        padding: 2em 1.25em;
+        padding: 1em 1.25em;
         border-radius: 12px;
         margin: 2em 0 0;
+        color: var(--grayscale-ash);
+        box-shadow: 0 0px 14px 0 rgb(0 0 0 / 10%);
     }
 </style>
