@@ -106,9 +106,18 @@ export default {
 
 .link {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  text-decoration: underline;
-  color: var(--text-link);
-  font-weight: 500;
+  text-decoration: none;
+  color: var(--grayscale-body);
+  font-weight: 400;
+  display: inline-block;
+}
+
+.link:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--grayscale-background);
 }
 
 .form {
