@@ -40,11 +40,12 @@ export default {
   --grayscale-body: #484848;
   --grayscale-placeholder: #A7A7A7;
   --grayscale-input: #f7f7f7;
-  --grayscale-background: #F7F7F7;
-  --primary-default: #FF5000;
+  --grayscale-background: #d7d7d7;
+  /*--primary-default: #FF5000;*/
+  --primary-default: #005BD4;
   --success-default: #00C637;
   --text-submit: white;
-  --text-link: #002f8d;
+  --text-link: var(--primary-default);
 }
 
 .layout__main {
@@ -122,6 +123,12 @@ export default {
   display: flex;
 }
 
+.form__group-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .form__radio {
   display: flex;
   align-items: center;
@@ -136,7 +143,7 @@ export default {
 }
 
 .form__button {
-  padding: 0 0 1.5em 0;
+  padding: 1.5em 0;
 }
 
 .form__buttons.layout__fixed {
@@ -150,7 +157,7 @@ export default {
 
 .form__label {
   font-weight: 500;
-  font-size: 0.875em;
+  font-size: 1em;
   color: var(--grayscale-ash);
   padding: 0.75em 0;
   display: block;
@@ -187,7 +194,7 @@ export default {
 
 .form__input::placeholder {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.875em;
 }
 

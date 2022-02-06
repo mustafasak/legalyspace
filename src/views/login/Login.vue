@@ -20,8 +20,11 @@
                         id="email" />
             </div>
             <div class="form__group">
-                <label class="form__label"
-                        for="password">Mot de passe</label>
+                <div class="form__group-actions">
+                    <label class="form__label"
+                            for="password">Mot de passe</label>
+                    <a class="link">Réinitialiser mon mot de passe</a>
+                </div>
                 <input class="form__input"
                         type="password"
                         placeholder="Exemple : JDiehf8344hd"
@@ -29,8 +32,8 @@
                         v-model="password"
                         id="password" />
             </div>
-            <p class="text__body">Vous avez oublié votre mot de passe ?
-                <a class="link">Réinitialiser mon mot de passe</a></p>
+            <!-- <p class="text__body">Vous avez oublié votre mot de passe ?
+                <a class="link">Réinitialiser mon mot de passe</a></p> -->
             <div class="form__button layout__flex">
                 <button class="button button-submit"
                         type="submit">Suivant</button>
