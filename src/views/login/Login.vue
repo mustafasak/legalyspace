@@ -60,7 +60,7 @@ export default {
         submit: function () {
             router.push({
             path: '/register',
-            query: { step: 2 }
+            query: { step: 1 }
           })
         },
         redirect: function () {

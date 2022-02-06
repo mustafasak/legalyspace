@@ -183,6 +183,7 @@ export default {
 .form__input {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   width: 100%;
+  display: block;
   background: var(--grayscale-input);
   border: 1px solid var(--grayscale-background);
   border-radius: 0.75em;
