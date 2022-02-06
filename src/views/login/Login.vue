@@ -11,26 +11,28 @@
               novalidate="true">
             <div class="form__group">
                 <label class="form__label"
-                        for="email">Identifiant ou e-mail</label>
+                        for="email">Adresse e-mail</label>
                 <input class="form__input"
-                        type="email"
-                        placeholder="Exemple : legalyspace0324"
-                        name="email"
-                        v-model="email"
-                        id="email" />
+                        type="username"
+                        placeholder="Exemple : legalyspace@mail.com"
+                        name="username"
+                        v-model="username"
+                        autocomplete="username"
+                        id="username" />
             </div>
             <div class="form__group">
                 <div class="form__group-actions">
                     <label class="form__label"
-                            for="password">Mot de passe</label>
+                            for="current-password">Mot de passe</label>
                     <a class="link">Réinitialiser mon mot de passe</a>
                 </div>
                 <input class="form__input"
                         type="password"
                         placeholder="Exemple : JDiehf8344hd"
-                        name="password"
+                        name="current-password"
                         v-model="password"
-                        id="password" />
+                        autocomplete="current-password"
+                        id="current-password" />
             </div>
             <!-- <p class="text__body">Vous avez oublié votre mot de passe ?
                 <a class="link">Réinitialiser mon mot de passe</a></p> -->
@@ -52,7 +54,7 @@ export default {
     name: 'Login',
     data() {
         return {
-            email: "",
+            username: "",
             password: ""
         }
     },

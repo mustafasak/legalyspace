@@ -22,32 +22,38 @@
                         placeholder="Exemple: prenom@mail.com"
                         name="email"
                         v-model="email"
+                        required="required"
                         id="email" />
             </div>
             <div class="form__group">
                 <label class="form__label"
-                        for="password">Nouveau mot de passe</label>
+                        for="new-password">Nouveau mot de passe</label>
                 <input class="form__input"
                         type="password"
                         placeholder="6 charactères minimum"
-                        name="password"
+                        name="new-password"
                         v-model="password"
-                        id="password" />
+                        autocomplete="new-password"
+                        required="required"
+                        id="new-password" />
             </div>
-                        <div class="form__group">
+            <div class="form__group">
                 <label class="form__label"
-                        for="password">Confirmer le nouveau mot de passe</label>
+                        for="new-password">Confirmer le nouveau mot de passe</label>
                 <input class="form__input"
                         type="password"
                         placeholder="6 charactères minimum"
-                        name="password"
-                        v-model="password"
-                        id="password" />
+                        name="new-password"
+                        v-model="confirmPassword"
+                        autocomplete="new-password"
+                        required="required"
+                        id="new-password" />
             </div>
             <div class="form__buttons form__buttons-double layout__flex">
                 <button class="button button-prev"
-                        type="Button"
-                        @click="prev">Précédent</button>
+                        type="button"
+                        @click="prev"
+                        disabled>Précédent</button>
                 <button class="button button-submit"
                         type="submit"
                         @click.stop.prevent="next">Suivant</button>
@@ -63,7 +69,8 @@ export default {
     data() {
         return {
             email: "",
-            password: ""
+            password: "",
+            confirmPassword: ""
         }
     },
     methods: {

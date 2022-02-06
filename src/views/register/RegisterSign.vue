@@ -49,11 +49,11 @@
         </div>
         <div class="form__buttons form__buttons-double layout__fixed">
             <button class="button button-prev"
-                    type="Button"
+                    type="button"
                     @click="prev">Précédent</button>
-            <button class="button button-submit"
-                    type="submit"
-                    @click.stop.prevent="next">Suivant</button>
+            <button class="button button-prev"
+                    type="button"
+                    @click.stop.prevent="next(reading)">Lire la suite</button>
         </div>
     </div>
     
@@ -62,9 +62,19 @@
 <script>
 export default {
     name: 'RegisterSign',
+    data() {
+        return {
+            address: "",
+            reading: 0
+        }
+    },
     methods: {
-        next: function () {
-            this.$emit('form', 'next');
+        next: function (event) {
+            event = event + 1;
+            this.reading = event;
+
+            console.log(window);
+            window.scrollTo(0, this.reading * window.innerHeight);
         },
         prev: function () {
             this.$emit('form', 'prev')
@@ -75,7 +85,7 @@ export default {
 
 <style>
     .register-sign__document {
-        background: var(--grayscale-background);
+        background: white;
         padding: 1em 1.25em;
         border-radius: 12px;
         margin: 2em 0 0;

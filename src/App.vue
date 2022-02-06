@@ -41,8 +41,7 @@ export default {
   --grayscale-placeholder: #A7A7A7;
   --grayscale-input: #f7f7f7;
   --grayscale-background: #d7d7d7;
-  /*--primary-default: #FF5000;*/
-  --primary-default: #005BD4;
+  --primary-default: #FF5000;
   --success-default: #00C637;
   --text-submit: white;
   --text-link: var(--primary-default);
@@ -161,7 +160,8 @@ export default {
   display: flex;
   bottom: 0;
   left: 0;
-  padding: 1em 1.5em;
+  padding: 1.5em 1.5em 2em 1.5em;
+  border-radius: 12px 12px 0 0;
 }
 
 .form__label {
@@ -227,7 +227,9 @@ export default {
 }
 
 .button-prev {
-  border: 1px solid var(--grayscale-input);
+  border: 0;
+  background: var(--grayscale-input);
+  color: var(--grayscale-ash);
 }
 
 .button-submit {

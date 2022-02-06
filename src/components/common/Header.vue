@@ -28,6 +28,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 1em 1.5em;
+        border-radius: 0 0 12px 12px;
     }
 
     .header__logo {

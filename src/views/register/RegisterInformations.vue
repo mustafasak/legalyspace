@@ -43,7 +43,7 @@
                         for="lastname">Votre nom</label>
                 <input class="form__input"
                         type="text"
-                        placeholder="Exemple: Dupond"
+                        placeholder="Exemple : Dupond"
                         name="lastname"
                         v-model="lastname"
                         id="lastname" />
@@ -53,20 +53,20 @@
                         for="firstname">Votre prénom</label>
                 <input class="form__input"
                         type="text"
-                        placeholder="Exemple: Arnaud"
+                        placeholder="Exemple : Arnaud"
                         name="firstname"
                         v-model="firstname"
                         id="firstname" />
             </div>
             <div class="form__group">
                 <label class="form__label"
-                        for="date">Votre date de naissance</label>
+                        for="birthday">Votre date de naissance</label>
                 <input class="form__input"
-                        type="date"
-                        placeholder="Exemple: 04/12/1993"
-                        name="date"
-                        v-model="date"
-                        id="date" />
+                        type="text"
+                        placeholder="Exemple : 04/12/1993"
+                        name="birthday"
+                        v-model="birthday"
+                        id="birthday" />
             </div>
             <div class="form__group">
                 <label class="form__label"
@@ -80,7 +80,7 @@
             </div>
             <div class="form__buttons form__buttons-double layout__flex">
                 <button class="button button-prev"
-                        type="Button"
+                        type="button"
                         @click="prev">Précédent</button>
                 <button class="button button-submit"
                         type="submit"
@@ -94,6 +94,14 @@
 <script>
 export default {
     name: 'RegisterInformations',
+    data() {
+        return {
+            sex: "",
+            lastname: "",
+            firstname: "",
+            birthday: "",
+        }
+    },
     methods: {
         next: function () {
             this.$emit('form', 'next');
