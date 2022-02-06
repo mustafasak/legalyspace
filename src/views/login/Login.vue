@@ -2,12 +2,10 @@
     <div class="login-form">
         <div class="register__breadcrumbs">
         <h1 class="title__primary">Connexion</h1>
-        <div class="title__icon"></div>
-        <div class="title__secondary"></div>
         </div>
         <p class="text__body">Renseignez vos identifiants pour vous connecter à votre espace légale, LegalySpace.</p>
         <form class="form"
-              @click.stop.prevent="submit"
+              @submit.stop.prevent="submit"
               action="/register"
               method="post"
               novalidate="true">
@@ -31,13 +29,15 @@
                         v-model="password"
                         id="password" />
             </div>
+            <p class="text__body">Vous avez oublié votre mot de passe oublié ?
+                <br /><a class="link">Réinitialiser mon mot de passe</a></p>
             <div class="form__button layout__flex">
                 <button class="button button-submit"
                         type="submit">Suivant</button>
             </div>
         </form>
 
-        <p class="text__body">Vous n'avez pas encore de compte ? <a class="link">Inscription</a></p>
+        <p class="text__body">Vous n'avez pas encore de compte ? <a class="link" @click="redirect">Inscription</a></p>
     </div>
 </template>
 
@@ -58,6 +58,12 @@ export default {
             router.push({
             path: '/register',
             query: { step: 2 }
+          })
+        },
+        redirect: function () {
+            router.push({
+            path: '/register',
+            query: { step: 1 }
           })
         }
     }

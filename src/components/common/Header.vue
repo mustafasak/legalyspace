@@ -6,8 +6,7 @@
                 alt="Logo LegalySpace" />
         </router-link>
         <div id="header__navigation">
-            <router-link class="link" to="/login">Connexion</router-link> |
-            <router-link class="link" to="/register">Inscription</router-link>
+            <router-link class="link" to="/login">Connexion</router-link>
         </div>
     </div>
 </template>

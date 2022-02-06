@@ -57,6 +57,11 @@ export default {
   flex-wrap: nowrap;
 }
 
+.layout__fixed {
+  position: fixed;
+  width: 100%;
+}
+
 .title__primary {
   font-size: 1.25em;
   font-weight: bold;
@@ -85,6 +90,16 @@ export default {
 .text__body {
   line-height: 1.5em;
   font-size: 0.875em;
+  padding: 0 0 1em 0;
+}
+
+.text__body-nomargin {
+  padding: 0 0 4px 0;
+}
+
+.text__body-bold {
+  font-weight: 600;
+  color: var(--grayscale-ash);
 }
 
 .link {
@@ -93,8 +108,9 @@ export default {
   color: var(--grayscale-ash);
   font-weight: 600;
 }
+
 .form {
-  padding: 2em 0;
+  padding: 1em 0 0;
 }
 
 .form__group {
@@ -118,6 +134,18 @@ export default {
   padding: 1.5em 0;
 }
 
+.form__button {
+  padding: 0 0 1.5em 0;
+}
+
+.form__buttons.layout__fixed {
+  background: white;
+  box-shadow: 0 0px 14px 0 rgb(0 0 0 / 10%);
+  display: flex;
+  bottom: 0;
+  left: 0;
+  padding: 1em 1.5em;
+}
 
 .form__label {
   font-weight: 500;

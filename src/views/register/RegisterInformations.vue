@@ -9,7 +9,7 @@
             </div>
             <div class="title__secondary">Mes informations</div>
         </div>
-        <p class="text__body">Veuillez renseignez vos informations personnelles légales, elles seront utilisées pour tous vos documents légaux.</p>
+        <p class="text__body">Veuillez renseignez vos informations personnelles, elles seront utilisées pour tous vos documents légaux.</p>
         <form class="form"
               action="/register"
               method="post"

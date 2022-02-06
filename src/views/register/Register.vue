@@ -1,16 +1,16 @@
 <template>
 	<div class="register">
     <Step :step="currentStep"/>
-    <div v-if="currentStep == 1 || currentStep == 2">
+    <div v-if="currentStep == 1">
       <RegisterAccount @form="navigation"/>
     </div>
-    <div v-else-if="currentStep == 3">
+    <div v-else-if="currentStep == 2">
       <RegisterInformations @form="navigation"/>
     </div>
-    <div v-else-if="currentStep == 4">
+    <div v-else-if="currentStep == 3">
       <RegisterAdresse @form="navigation"/>
     </div>
-    <div v-else-if="currentStep == 5">
+    <div v-else-if="currentStep == 4">
       <RegisterSign @form="navigation"/>
     </div>
   </div>

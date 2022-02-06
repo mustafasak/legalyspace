@@ -18,7 +18,7 @@
         ],
         data() {
             return {
-                totalSteps: 5
+                totalSteps: 4
             }
         },
         computed: {
@@ -54,10 +54,10 @@
     }
 
     .step__item {
-        width: 18%;
+        width: 23%;
         margin: 0 2% 0 0;
         border-radius: 20px;
-        height: 2px;
+        height: 4px;
         background: var(--grayscale-input);
     }
     

@@ -9,7 +9,7 @@
             </div>
             <div class="title__secondary">Mon adresse</div>
         </div>
-        <p class="text__body">Nous allons activer votre compte ensemble, cela ne prendra que quelques secondes. Commencez par renseignez votre e-mail personnel et créez un nouveau mot de passe.</p>
+        <p class="text__body">Veuillez indiquer votre adresse postale, elles sera utilisée pour vous contacter.</p>
         <form class="form"
               action="/register"
               method="post"
