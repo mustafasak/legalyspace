@@ -14,7 +14,7 @@
                         for="email">Identifiant ou e-mail</label>
                 <input class="form__input"
                         type="email"
-                        placeholder="Exemple : legalyspace0324@monagence.com"
+                        placeholder="Exemple : legalyspace0324"
                         name="email"
                         v-model="email"
                         id="email" />
