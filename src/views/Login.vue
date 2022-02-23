@@ -53,7 +53,8 @@
 <script>
 import router from '../router';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import axios from 'axios';
+import axios from 'axios'
+
 
 
 const auth = getAuth();
@@ -62,28 +63,26 @@ export default {
     name: 'Login',
     data() {
         return {
+            api: null,
             username: "",
             password: ""
         }
     },
     methods: {
         submit: function () {
-            let config = {
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-                    'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+            this.api = axios.create({
+                baseURL : 'https://demo.legalyspace.com/LYSLogique/api/',
+                withCredentials : true,
+                headers : {        
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
-            }
-
-            let data = {
-                userName: this.username,
-                password: this.password
-            }
-            axios.post(
-                `https://demo.legalyspace.com/LYSLogique/api/auth/signin`,
-                data,
-                config
+            });
+            this.api.post(
+                `https://demo.legalyspace.com/LYSLogique/api/auth/signin`, {
+                    userName: this.username,
+                    password: this.password
+                }
             ).then(response => {
                 console.log(response);
                 signInWithEmailAndPassword(auth, "mustafa.sak@outlook.fr", "testtest")
