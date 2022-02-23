@@ -3,8 +3,8 @@
         <div class="banner" v-if="deferredPrompt">
             <p class="text__body">Installer la nouvelle application de legalyspace pour faciliter l'accès à vos documents !</p>
             <div class="banner__link">
-                <a class="link" @click="dismiss">Dismiss</a>
-                <a class="link link-filled" @click="install">Install</a>
+                <a class="link link-filled" @click="install">Installer</a>
+                <a class="link" @click="dismiss">Non, merci</a>
             </div>
         </div>
         <div class="header__inner">
@@ -77,13 +77,22 @@
     }
 
     .banner {
+        display: flex;
         padding: 1em 1.5em;
         flex-wrap: wrap;
         justify-content: space-between;
-        align-items: center;
+        align-content: stretch;
     }
 
+    .banner__link {
+        width: 20%;
+        align-self: stretch;
+        justify-content: space-between;
+        display: flex;
+        flex-wrap: wrap;
+    }
     .banner  .text__body {
         padding-bottom: 1em;
+        width: 80%;
     }
 </style>

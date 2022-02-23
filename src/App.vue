@@ -131,6 +131,10 @@ export default {
   background: var(--grayscale-background);
 }
 
+.link-filled {
+  color: var(--primary-default);
+}
+
 .form {
   padding: 1em 0 0;
 }
