@@ -78,6 +78,12 @@ export default {
                     'Content-Type': 'application/json'
                 }
             });
+            // this.api.post('auth/token', {
+            //     "client_id": "string",
+            //     "client_secret": "string"
+            // }).then(response => {
+            //     console.log(response)
+            // });
             this.api.post(
                 `https://demo.legalyspace.com/LYSLogique/api/auth/signin`, {
                     userName: this.username,
@@ -86,10 +92,10 @@ export default {
             ).then(response => {
                 console.log(response);
                 signInWithEmailAndPassword(auth, "mustafa.sak@outlook.fr", "testtest")
-                    .then((userCredential) => {
+                    .then((/*userCredential*/) => {
                     // Signed in 
-                    const user = userCredential.user;
-                    console.log(user);
+                    //const user = userCredential.user;
+                   // console.log(user);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -111,8 +117,8 @@ export default {
             if (user) {
                 // User is signed in, see docs for a list of available properties
                 // https://firebase.google.com/docs/reference/js/firebase.User
-                const uid = user.uid;
-                console.log(uid);
+                //const uid = user.uid;
+                //console.log(uid);
                 
                 router.push({
                     path: '/documents'
