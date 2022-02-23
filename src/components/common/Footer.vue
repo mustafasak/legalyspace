@@ -16,4 +16,10 @@
     font-size: 0.875em;
     color: var(--grayscale-placeholder);
 }
+
+@media screen and (min-width: 768px) {
+    .footer {
+        text-align: center;
+    }
+}
 </style>

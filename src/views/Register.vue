@@ -1,28 +1,28 @@
 <template>
 	<div class="register">
     <Step :step="currentStep"/>
-    <div v-if="currentStep == 1">
+    <template v-if="currentStep == 1">
       <RegisterAccount @form="navigation"/>
-    </div>
-    <div v-else-if="currentStep == 2">
+    </template>
+    <template v-else-if="currentStep == 2">
       <RegisterInformations @form="navigation"/>
-    </div>
-    <div v-else-if="currentStep == 3">
+    </template>
+    <template v-else-if="currentStep == 3">
       <RegisterAdresse @form="navigation"/>
-    </div>
-    <div v-else-if="currentStep == 4">
+    </template>
+    <template v-else-if="currentStep == 4">
       <RegisterSign @form="navigation"/>
-    </div>
+    </template>
   </div>
 </template>
 
 <script>
-import router from '../../router';
-import Step from '../../components/common/Step.vue';
-import RegisterAccount from './RegisterAccount.vue';
-import RegisterInformations from './RegisterInformations.vue';
-import RegisterAdresse from './RegisterAdresse.vue';
-import RegisterSign from './RegisterSign.vue';
+import router from '../router';
+import Step from '../components/common/Step.vue';
+import RegisterAccount from '../components/register/RegisterAccount.vue';
+import RegisterInformations from '../components/register/RegisterInformations.vue';
+import RegisterAdresse from '../components/register/RegisterAdresse.vue';
+import RegisterSign from '../components/register/RegisterSign.vue';
 
 
 export default {

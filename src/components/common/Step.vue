@@ -65,4 +65,9 @@
         background: var(--success-default);
     }
     
+    @media screen and (min-width: 768px) {
+        .step {
+            width: 100%;
+        }
+    }
  </style>

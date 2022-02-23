@@ -1,17 +1,20 @@
 <template>
-    <div class="register-sign">
-        <div class="title__breadcrumbs">
-            <h1 class="title__primary">Inscription</h1>
-            <div class="title__icon">
-                <img class="header__breadcrumbs"
-                    src="@/assets/breadcrumbs.png"
-                    alt="Logo LegalySpace" />
+    <div class="layout__columns">
+        <div class="layout__column">
+            <div class="title__breadcrumbs">
+                <h1 class="title__primary">Inscription</h1>
+                <div class="title__icon">
+                    <img class="header__breadcrumbs"
+                        src="@/assets/breadcrumbs.png"
+                        alt="Logo LegalySpace" />
+                </div>
+                <div class="title__secondary">Convention de preuves</div>
             </div>
-            <div class="title__secondary">Convention de preuves</div>
-        </div>
         <p class="text__body">Pour créer votre compte sur l’espace légale LegalySpace, vous devez accepter et signer la convention de preuves.</p>
         <p class="text__body">Il s’agit d’un document qui permet de sécurisé l’accès à votre compte et aux documents profesionnels s’y trouvant.</p>
-        <div class="register-sign__document">
+        </div>
+        <div class="layout__column">
+            <div class="register-sign__document">
             <p class="text__body text__body-nomargin">ENTRE :</p>
             <p class="text__body text__body-nomargin">Société Legalyspace,</p>
             <p class="text__body text__body-nomargin">SARL au capital de 6.000 €uro,</p>
@@ -46,15 +49,16 @@
             <p class="text__body">Dans le cas où une nouvelle convention est signée entre le Client et LEGALYSPACE, notamment en cas de changement des informations juridiques du Client, une nouvelle convention est établie et signée laquelle se substitue pour l’avenir à la présente convention.</p>
             <p class="text__body text__body-nomargin text__body-bold">4. Déclaration des personnes physiques signataires</p>
             <p class="text__body">Les personnes physiques dont la signature a été utilisée pour signer le présent document ainsi que tous les documents à venir sont réputés être dûment habilitées à signer pour le compte de l’entité juridique elles appartiennent et à engager juridiquement cette dernière. A ce titre, il appartient à chaque Partie de veiller à ce que le signataire dispose des délégations de pouvoirs nécessaires. Le défaut d’une Partie dans la gestion de ces délégations de pouvoirs ne pourra pas être opposé à l’autre Partie pour faire échec à la valeur juridique du document signé ni de la présente convention.</p>
+            </div>
         </div>
-        <div class="form__buttons form__buttons-double layout__fixed">
-            <button class="button button-prev"
-                    type="button"
-                    @click="prev">Précédent</button>
-            <button class="button button-prev"
-                    type="button"
-                    @click.stop.prevent="next(reading)">Lire la suite</button>
-        </div>
+                    <div class="form__buttons form__buttons-double layout__fixed">
+                    <button class="button button-prev"
+                            type="button"
+                            @click="prev">Précédent</button>
+                    <button class="button button-prev"
+                            type="button"
+                            @click.stop.prevent="next(reading)">Lire la suite</button>
+                </div>
     </div>
     
 </template>

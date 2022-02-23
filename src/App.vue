@@ -48,7 +48,7 @@ export default {
 }
 
 .layout__main {
-  padding: 0 1.5em 0;
+  padding: 0 1.5em;
 }
 
 .layout__flex {
@@ -79,7 +79,7 @@ export default {
 
 .title__breadcrumbs {
   display: flex;
-  padding: 1.5em 0 2em 0;
+  padding: 1.5em 0 1em 0;
   align-items: flex-start;
 }
 
@@ -109,6 +109,18 @@ export default {
   color: var(--grayscale-body);
   font-weight: 400;
   display: inline-block;
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+
+.link:hover {
+  color: var(--primary-default);
+  transition: all 0.1s linear;
+}
+
+.link:hover:after {
+  background: var(--primary-default);
+  transition: all 0.1s linear;
 }
 
 .link:after {
@@ -124,30 +136,17 @@ export default {
 }
 
 .form__group {
-  padding: 0 0 1em 0;
+  margin: 0 0 1.5em 0;
 }
 
 .form__group-radio {
   display: flex;
 }
 
-.form__group-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.form__radio {
-  display: flex;
-  align-items: center;
-}
-
-.form__radio:first-child {
-  margin-right: 2em;
-}
-
 .form__buttons {
   padding: 1.5em 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .form__button {
@@ -164,11 +163,16 @@ export default {
   border-radius: 12px 12px 0 0;
 }
 
+.form__labels {
+  padding-bottom: 0.875em;
+  display: flex;
+  justify-content: space-between;
+}
+
 .form__label {
   font-weight: 500;
   font-size: 1em;
   color: var(--grayscale-ash);
-  padding: 0.75em 0;
   display: block;
   cursor: pointer;
 }
@@ -183,29 +187,51 @@ export default {
 .form__input {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   width: 100%;
-  display: block;
   background: var(--grayscale-input);
   border: 1px solid var(--grayscale-background);
+}
+
+.form__radio {
+  display: flex;
+  align-items: center;
+}
+
+
+.form__radio:first-child {
+  margin-right: 2em;
+}
+
+.form__input-text,
+.form__input-password  {
   border-radius: 0.75em;
-  padding: 1em 1.5em;
+  padding: 1.25em 1.5em;
   font-weight: 400;
-  font-size: 1em;
+  font-size: 0.75em;
+  margin: 0;
+  display: block;
 }
 
 .form__input-radio {
-  width: inherit;
+  width: 2em;
+  height: 2em;
   margin: 0;
 }
+
+.form__input-text::placeholder,
+.form__input-password::placeholder  {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+} 
 
 .form__input-radio:checked + .form__label-radio  {
   color: var(--grayscale-ash);
   font-weight: 500;
 }
 
-.form__input::placeholder {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 1em;
+
+.form__input-text:not(:placeholder-shown),
+.form__input-password:not(:placeholder-shown) {
+  background: white;
 }
 
 .form__buttons-double .button:first-child {
@@ -237,4 +263,9 @@ export default {
   color: var(--text-submit);
 }
 
+@media screen and (min-width: 768px) {
+  .layout__main {
+    padding: 1em 30%;
+  }
+}
 </style>

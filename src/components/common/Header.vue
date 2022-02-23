@@ -31,6 +31,12 @@
         border-radius: 0 0 12px 12px;
     }
 
+    @media screen and (min-width: 768px) {
+        .header {
+            padding: 1em 10%;
+        }
+    }
+
     .header__logo {
         width: 150px;
     }
