@@ -12,6 +12,7 @@
     "firebase": "^9.6.6",
     "googleapis": "^95.0.0",
     "http2": "^3.3.7",
+    "register-service-worker": "^1.7.1",
     "reset-css": "^5.0.1",
     "vue": "^2.6.11",
     "vue-google-autocomplete": "^1.1.2",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-pwa": "~4.5.15",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
