@@ -68,11 +68,23 @@ export default {
     },
     methods: {
         submit: function () {
-            axios.post(`https://demo.legalyspace.com/LYSLogique/api/auth/signin`, {
-                    userName: this.username,
-                    password: this.password
-            })
-            .then(response => {
+            let config = {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+                }
+            }
+
+            let data = {
+                userName: this.username,
+                password: this.password
+            }
+            axios.post(
+                `https://demo.legalyspace.com/LYSLogique/api/auth/signin`,
+                data,
+                config
+            ).then(response => {
                 console.log(response);
                 signInWithEmailAndPassword(auth, "mustafa.sak@outlook.fr", "testtest")
                     .then((userCredential) => {
@@ -86,7 +98,7 @@ export default {
             })
             .catch(e => {
                     this.errors.push(e)
-                })
+            })
         },
         redirect: function () {
             router.push({
