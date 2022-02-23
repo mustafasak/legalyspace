@@ -85,7 +85,7 @@ export default {
     },
     methods: {
         next: function () {
-            this.$emit('form', 'next');
+            //this.$emit('form', 'next');
         },
         prev: function () {
             this.$emit('form', 'prev')

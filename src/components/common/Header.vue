@@ -55,6 +55,7 @@
         box-shadow: 0 0px 14px 0 rgb(0 0 0 / 10%);
         position: sticky;
         top: 0;
+        padding: 1em 0;
         border-radius: 0 0 12px 12px;
     }
 
@@ -91,6 +92,7 @@
         display: flex;
         flex-wrap: wrap;
     }
+
     .banner  .text__body {
         padding-bottom: 1em;
         width: 80%;

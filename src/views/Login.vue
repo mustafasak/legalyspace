@@ -53,6 +53,8 @@
 <script>
 import router from '../router';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import axios from 'axios';
+
 
 const auth = getAuth();
 
@@ -66,15 +68,25 @@ export default {
     },
     methods: {
         submit: function () {
-            signInWithEmailAndPassword(auth, this.username, this.password)
-                .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                console.log(user);
+            axios.post(`https://demo.legalyspace.com/LYSLogique/api/auth/signin`, {
+                    userName: this.username,
+                    password: this.password
             })
-            .catch((error) => {
-                console.error(error);
-            });
+            .then(response => {
+                console.log(response);
+                signInWithEmailAndPassword(auth, "mustafa.sak@outlook.fr", "testtest")
+                    .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log(user);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            })
+            .catch(e => {
+                    this.errors.push(e)
+                })
         },
         redirect: function () {
             router.push({
