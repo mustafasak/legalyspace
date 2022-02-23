@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <div v-if="deferredPrompt">
+        <div class="banner" v-if="deferredPrompt">
             <p>Installer la nouvelle application de legalyspace pour faciliter l'accès à vos documents !</p>
             <template>
             <button class="link" @click="dismiss">Dismiss</button>
