@@ -1,5 +1,12 @@
 <template>
     <div class="header">
+        <div v-if="deferredPrompt">
+            <p>Installer la nouvelle application de legalyspace pour faciliter l'accès à vos documents !</p>
+            <template>
+            <button class="link" @click="dismiss">Dismiss</button>
+            <button class="button button-submit" @click="install">Install</button>
+            </template>
+        </div>
         <router-link to="/">
             <img class="header__logo"
                 src="@/assets/logo.svg"
@@ -13,7 +20,30 @@
 
 <script>
     export default {
-        name: 'Header'
+        name: 'Header',
+        data() {
+            return {
+                deferredPrompt: null
+            };
+        },
+        created() {
+            window.addEventListener("beforeinstallprompt", e => {
+                e.preventDefault();
+                // Stash the event so it can be triggered later.
+                this.deferredPrompt = e;
+            });
+            window.addEventListener("appinstalled", () => {
+                this.deferredPrompt = null;
+            });
+        },
+        methods: {
+            async dismiss() {
+                this.deferredPrompt = null;
+            },
+            async install() {
+                this.deferredPrompt.prompt();
+            }
+        }
     }
 </script>
 
