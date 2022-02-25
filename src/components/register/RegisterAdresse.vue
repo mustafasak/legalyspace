@@ -22,13 +22,13 @@
                         <label class="form__label"
                                 for="address">Votre adresse postale</label>
                     </div>
-                    <input class="form__input"
-                            type="address"
-                            placeholder="Exemple: 28 rue buhan, 33 000, Bordeaux"
-                            name="address"
-                            v-model="address"
-                            id="address" />
-                    <input class="form__input form__input-text" type="text" placeholder="Origin" ref="origin" :autocomplete="autocomplete"/>
+                    <input class="form__input form__input-text"
+                           type="address"
+                           placeholder="Exemple: 28 rue buhan, 33 000, Bordeaux"
+                           name="address"
+                           v-model="address"
+                           id="address"
+                           ref="origin"/>
                 </div> 
                 <div class="form__buttons form__buttons-double layout__flex">
                     <button class="button button-prev"
@@ -45,19 +45,22 @@
 </template>
 
 <script>
-//import { google } from "googleapis";
+import {loadedGoogleMapsAPI} from '@/main'
 
 export default {
     name: 'RegisterAdresse',
     data() {
         return {
-            address: "",
-            google: null,
-            autocomplete: null
-
+            address: ""
         }
     },
+    watch: {
+        loadedGoogleMapsAPI: function() {}
+    },
     methods: {
+        initMap: function() {
+
+        },
         next: function () {
             this.$emit('form', 'next');
         },
@@ -66,7 +69,9 @@ export default {
         }
     },
     mounted() {
-        //this.autocomplete = new google.maps.places.Autocomplete(this.$refs["origin"]);
-    }
+        loadedGoogleMapsAPI.then(()=> {
+            new google.maps.places.Autocomplete(this.$refs["origin"]);
+       });
+    },
 }
 </script>

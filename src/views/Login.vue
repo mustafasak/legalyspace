@@ -41,10 +41,10 @@
                 </div>
                 <div class="form__button layout__flex">
                     <button class="button button-submit"
-                            type="submit">Suivant</button>
+                            type="submit">Se connecter</button>
                 </div>
             </form>
-            <p class="text__body">Vous n'avez pas encore de compte ? <a class="link" @click="redirect">Inscription</a></p>
+            <!--<p class="text__body">Vous n'avez pas encore de compte ? <a class="link" @click="redirect">Inscription</a></p>-->
         </div>
     </div>
 </template>
@@ -53,7 +53,7 @@
 <script>
 import router from '../router';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import axios from 'axios'
+import axios from 'axios';
 
 
 
@@ -78,12 +78,6 @@ export default {
                     'Content-Type': 'application/json'
                 }
             });
-            // this.api.post('auth/token', {
-            //     "client_id": "string",
-            //     "client_secret": "string"
-            // }).then(response => {
-            //     console.log(response)
-            // });
             this.api.post(
                 `https://demo.legalyspace.com/LYSLogique/api/auth/signin`, {
                     userName: this.username,
@@ -102,7 +96,7 @@ export default {
                 });
             })
             .catch(e => {
-                    this.errors.push(e)
+                this.errors.push(e)
             })
         },
         redirect: function () {

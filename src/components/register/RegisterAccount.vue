@@ -28,7 +28,8 @@
                             name="email"
                             v-model="email"
                             required="required"
-                            id="email" />
+                            id="email"
+                            :disabled="autocomplete ? true : false"/>
                 </div>
                 <div class="form__group">
                     <div class="form__labels">
@@ -53,7 +54,7 @@
                             type="password"
                             placeholder="6 charactères minimum"
                             name="new-password"
-                            v-model="confirmPassword"
+                            v-model="passwordConfirm"
                             autocomplete="new-password"
                             required="required"
                             id="confirm-password" />
@@ -76,20 +77,46 @@
 <script>
 export default {
     name: 'RegisterAccount',
+    props: {
+        user: null
+    },
     data() {
         return {
+            autocomplete: false,
             email: "",
             password: "",
-            confirmPassword: ""
+            passwordConfirm: ""
+        }
+    },
+    watch: {
+        user: function() {
+            console.log(this.user);
+            if (this.user !== null) {
+                this.autocomplete = true;
+                this.email = this.user['mail'];
+                this.name = this.user['nom'];
+            }
         }
     },
     methods: {
         next: function () {
-            //this.$emit('form', 'next');
+            let user = null
+            if (localStorage.getItem('user') === undefined) {
+                localStorage.setItem('user', {})
+            } else {
+                user = JSON.parse(localStorage.getItem('user'));
+            }
+            user['password'] = this.password;
+            user['passwordConfirm'] = this.passwordConfirm;
+
+            localStorage.setItem('user', JSON.stringify(user));
+            
+            this.$emit('form', 'next');
         },
         prev: function () {
             this.$emit('form', 'prev')
         }
-    }
+    },
+    created() {}
 }
 </script>

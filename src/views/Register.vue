@@ -2,10 +2,12 @@
 	<div class="register">
     <Step :step="currentStep"/>
     <template v-if="currentStep == 1">
-      <RegisterAccount @form="navigation"/>
+      <RegisterAccount @form="navigation"
+                       :user="user"/>
     </template>
     <template v-else-if="currentStep == 2">
-      <RegisterInformations @form="navigation"/>
+      <RegisterInformations @form="navigation"
+                            :user="user"/>
     </template>
     <template v-else-if="currentStep == 3">
       <RegisterAdresse @form="navigation"/>
@@ -23,6 +25,7 @@ import RegisterAccount from '../components/register/RegisterAccount.vue';
 import RegisterInformations from '../components/register/RegisterInformations.vue';
 import RegisterAdresse from '../components/register/RegisterAdresse.vue';
 import RegisterSign from '../components/register/RegisterSign.vue';
+import axios from 'axios';
 
 
 export default {
@@ -36,12 +39,16 @@ export default {
   },
   data() {
     return {
-      step: Number
+      step: Number,
+      user: null
     }
   },
   computed: {
     currentStep: function() {
       return parseInt(this.$route.query['step']) || 1;
+    },
+    code: function() {
+      return this.$route.query['code'];
     },
     nextStep: function() {
       return parseInt(this.$route.query['step']) + 1;
@@ -51,29 +58,75 @@ export default {
     }
   },
   watch: {
-    currentStep: function () {}
+    currentStep: function () {},
+    user: function () {}
   },
   methods: {
     navigation: function(value) {
       if (value == "prev") {
+        if (this.code !== undefined) {
+          router.push({
+            path: '/register',
+            query: {
+              step: this.prevStep,
+              code: this.code
+            }
+          })
+        } else {
           router.push({
             path: '/register',
             query: { step: this.prevStep }
           })
+        }
       } else {
-        router.push({
-          path: '/register',
-          query: { step: this.nextStep }
-        })
+        if (this.code !== undefined) {
+          router.push({
+            path: '/register',
+            query: {
+              step: this.nextStep,
+              code: this.code
+            }
+          })
+        } else {
+          router.push({
+            path: '/register',
+            query: {
+              step: this.nextStep
+            }
+          })
+        }
       }
     }
   },
-  mounted() {
-    if (this.$route.query.step === undefined) {
+  created() {
+    console.log(this.currentStep);
+    if (this.currentStep === undefined) {
       router.push({
           path: '/register',
           query: { step: 1 }
         })
+    }
+    if (this.code !== undefined) {
+      this.api = axios.create({
+          baseURL : 'https://demo.legalyspace.com/LYSLogique/api/',
+          withCredentials : true,
+          headers : {        
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+          }
+      });
+      this.api.post(
+          `https://demo.legalyspace.com/LYSLogique/api/inscription/getUserFromCodePartenaire`, {
+              codePartenaire: this.code 
+          }
+      ).then(response => {
+        localStorage.setItem('user', JSON.stringify(response.data))
+        this.user = JSON.parse(localStorage.getItem('user'));
+        console.log(this.user);
+      })
+      .catch(e => {
+          this.errors.push(e)
+      })
     }
   }
 }

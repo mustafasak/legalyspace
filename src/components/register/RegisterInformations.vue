@@ -107,6 +107,9 @@
 <script>
 export default {
     name: 'RegisterInformations',
+    props: {
+        user: null
+    },
     data() {
         return {
             sex: "",
@@ -119,11 +122,23 @@ export default {
     },
     methods: {
         next: function () {
+            let user = JSON.parse(localStorage.getItem('user'));
+            user['nom'] = this.lastname;
+            user['prenom'] = this.firstname;
+            user['lieuNaissance'] = this.birthcity;
+            user['dateNaissance'] = this.birthday;
+
+            localStorage.setItem('user', JSON.stringify(user));
             this.$emit('form', 'next');
         },
         prev: function () {
             this.$emit('form', 'prev')
         }
+    },
+    created() {
+        this.firstname = this.user['prenom'];
+        this.lastname = this.user['nom'];
+        this.birthcity = this.user['lieuNaissance'];
     }
 }
 </script>
@@ -137,7 +152,7 @@ input[type="date"]
     min-height: 1.2em;
 }
 input[type="date"]::before {
-    content: 'Exemple : '
+    content: ' '
 }
 
 
