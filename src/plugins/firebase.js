@@ -11,7 +11,7 @@ const messaging = getMessaging(firebaseApp);
 Vue.prototype.$db = db;
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker
-      .register("./firebase-messaging-sw.js")
+      .register("./service-worker.js")
       .then(function(registration) {
         console.log("Registration successful, scope is:", registration.scope);
         messaging.getToken({
