@@ -45,14 +45,13 @@
 </template>
 
 <script>
-import {loadedGoogleMapsAPI} from '@/main'
+//import {loadedGoogleMapsAPI} from '@/main'
 
 export default {
     name: 'RegisterAdresse',
     data() {
         return {
-            address: "",
-            google: null
+            address: ""
         }
     },
     watch: {
@@ -70,9 +69,9 @@ export default {
         }
     },
     mounted() {
-        loadedGoogleMapsAPI.then(()=> {
-            new google.maps.places.Autocomplete(this.$refs["origin"]);
-       });
+    //     loadedGoogleMapsAPI.then(()=> {
+    //         new google.maps.places.Autocomplete(this.$refs["origin"]);
+    //    });
     },
 }
 </script>
