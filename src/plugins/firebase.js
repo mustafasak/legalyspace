@@ -15,7 +15,7 @@ if ("serviceWorker" in navigator) {
       .register("./firebase-messaging-sw.js")
       .then(function(registration) {
         console.log("Registration successful, scope is:", registration.scope);
-        messaging.getToken({vapidKey: 'YOUR_VAPID_KEY', serviceWorkerRegistration : registration })
+        messaging.getToken({vapidKey: 'BN9bpGyskPt346ZCQVKJI2upTsn8jVMLsef7kB2H-9IkZEwY0piGjSBQoZWOG-ZuNWcNptGoID0Zom8Ei1RNbn4', serviceWorkerRegistration : registration })
           .then((currentToken) => {
             if (currentToken) {
               console.log('current token for client: ', currentToken);
