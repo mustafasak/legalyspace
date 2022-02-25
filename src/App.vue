@@ -11,14 +11,20 @@
 <script>
 import Header from '@/components/common/Header.vue';
 import Footer from '@/components/common/Footer.vue';
-
 import 'reset-css';
+
+
+// Get registration token. Initially this makes a network call, once retrieved
+// subsequent calls to getToken will return from cache.
+
 
 export default {
   name: 'App',
   components: {
     Header,
     Footer
+  },
+  mounted() {
   }
 }
 </script>
