@@ -51,7 +51,8 @@ export default {
     name: 'RegisterAdresse',
     data() {
         return {
-            address: ""
+            address: "",
+            google: null
         }
     },
     watch: {
