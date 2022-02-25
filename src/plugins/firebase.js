@@ -15,7 +15,7 @@ if ("serviceWorker" in navigator) {
       .register("./firebase-messaging-sw.js")
       .then(function(registration) {
         console.log("Registration successful, scope is:", registration.scope);
-        messaging.getToken({vapidKey: 'BN9bpGyskPt346ZCQVKJI2upTsn8jVMLsef7kB2H-9IkZEwY0piGjSBQoZWOG-ZuNWcNptGoID0Zom8Ei1RNbn4', serviceWorkerRegistration : registration })
+        messaging.getToken({vapidKey: 'YOUR_VAPID_KEY', serviceWorkerRegistration : registration })
           .then((currentToken) => {
             if (currentToken) {
               console.log('current token for client: ', currentToken);
@@ -35,6 +35,22 @@ if ("serviceWorker" in navigator) {
         .catch(function(err) {
           console.log("Service worker registration failed, error:"  , err );
       }); 
-    }
-  
+} else {
+    getToken(messaging, { vapidKey: 'BN9bpGyskPt346ZCQVKJI2upTsn8jVMLsef7kB2H-9IkZEwY0piGjSBQoZWOG-ZuNWcNptGoID0Zom8Ei1RNbn4' }).then((currentToken) => {
+        if (currentToken) {
+          // Send the token to your server and update the UI if necessary
+          // ...
+        } else {
+          // Show permission request UI
+          console.log('No registration token available. Request permission to generate one.');
+          // ...
+        }
+      }).catch((err) => {
+        console.log('An error occurred while retrieving token. ', err);
+        // ...
+      });
+      
+}
+    
+
 export default firebaseApp;
