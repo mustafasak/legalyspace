@@ -14,7 +14,7 @@ if ("serviceWorker" in navigator) {
       .register("./service-worker.js")
       .then(function(registration) {
         console.log("Registration successful, scope is:", registration.scope);
-        messaging.getToken({
+        getToken(messaging,{
                 vapidKey: 'BN9bpGyskPt346ZCQVKJI2upTsn8jVMLsef7kB2H-9IkZEwY0piGjSBQoZWOG-ZuNWcNptGoID0Zom8Ei1RNbn4' 
             }).then((currentToken) => {
                 if (currentToken) {
