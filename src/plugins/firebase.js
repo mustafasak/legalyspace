@@ -6,7 +6,7 @@ import Vue from "vue";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.database;
-const messaging = getMessaging();
+const messaging = getMessaging(firebaseApp);
 
 Vue.prototype.$db = db;
 
