@@ -1,7 +1,8 @@
 import firebaseConfig from "../config/firebase";
 import firebase from "firebase/compat/app";
 import "firebase/database";
-import { getMessaging, getToken } from "firebase/messaging";
+import { getToken } from "firebase/messaging";
+import { getMessaging } from "firebase/messaging/sw";
 import Vue from "vue";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
