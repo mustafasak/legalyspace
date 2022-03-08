@@ -28,6 +28,7 @@
                             name="email"
                             v-model="email"
                             required="required"
+                            autocomplete="username"
                             id="email"
                             :disabled="autocomplete ? true : false"/>
                 </div>
@@ -37,13 +38,15 @@
                                 for="new-password">Nouveau mot de passe</label>
                     </div>
                     <input class="form__input form__input-password"
-                            type="password"
+                            :type="typePassword ? 'password' : 'text'"
                             placeholder="6 charactères minimum"
                             name="new-password"
                             v-model="password"
                             autocomplete="new-password"
                             required="required"
-                            id="new-password" />
+                            id="new-password"/>
+
+                        <span @click="showPassword('password')">Afficher le mot de passe</span>
                 </div>
                 <div class="form__group">
                     <div class="form__labels">
@@ -51,20 +54,25 @@
                                 for="confirm-password">Confirmer le nouveau mot de passe</label>
                     </div>
                     <input class="form__input form__input-password"
-                            type="password"
+                            :type="typePasswordConfirm ? 'password' : 'text'"
                             placeholder="6 charactères minimum"
                             name="new-password"
                             v-model="passwordConfirm"
                             autocomplete="new-password"
                             required="required"
                             id="confirm-password" />
+                    <span @click="showPassword('passwordConfirm')">
+                        <img class="input__icon"
+                             src="@/assets/icons/eye-off-outline.png"
+                             alt="show password" />
+                    </span>
                 </div>
             </form>
             <div class="form__buttons form__buttons-double layout__flex">
                 <button class="button button-prev"
                         type="button"
-                        @click="prev"
-                        disabled>Précédent</button>
+                        @click.stop.prevent="previous"
+                        disabled="disabled">Précédent</button>
                 <button class="button button-submit"
                         type="submit"
                         @click.stop.prevent="next">Suivant</button>
@@ -83,40 +91,52 @@ export default {
     data() {
         return {
             autocomplete: false,
-            email: "",
-            password: "",
-            passwordConfirm: ""
-        }
-    },
-    watch: {
-        user: function() {
-            console.log(this.user);
-            if (this.user !== null) {
-                this.autocomplete = true;
-                this.email = this.user['mail'];
-                this.name = this.user['nom'];
-            }
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            typePassword: true,
+            typePasswordConfirm: true,
+            displayPassword: false
         }
     },
     methods: {
-        next: function () {
-            let user = null
-            if (localStorage.getItem('user') === undefined) {
-                localStorage.setItem('user', {})
-            } else {
-                user = JSON.parse(localStorage.getItem('user'));
-            }
-            user['password'] = this.password;
-            user['passwordConfirm'] = this.passwordConfirm;
-
-            localStorage.setItem('user', JSON.stringify(user));
-            
-            this.$emit('form', 'next');
+        next() {
+            this.$emit('form', {
+                action: 'next',
+                form: 'account',
+                password: this.password,
+                passwordConfirm: this.passwordConfirm
+            });
         },
-        prev: function () {
-            this.$emit('form', 'prev')
+        previous() {
+            this.$emit('form', {
+                action: 'previous'
+            })
+        },
+        showPassword(item) {
+            if(item == "password") {
+                this.typePassword = !this.typePassword;
+            } else {
+                this.typePasswordConfirm = !this.typePasswordConfirm;
+            }
+        },
+        completeForm() {
+            if (this.user !== null) {
+                this.autocomplete = true;
+                if (this.user['mail'] !== null) {
+                    this.email = this.user['mail'];
+                }
+                if (this.user['password'] !== null ) {
+                    this.password = this.user['password'];
+                }
+                if (this.user['passwordConfirm'] !== null) {
+                    this.passwordConfirm = this.user['passwordConfirm'];
+                }
+            }
         }
     },
-    created() {}
+    mounted() {
+        this.completeForm();
+    }
 }
 </script>

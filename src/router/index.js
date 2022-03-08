@@ -4,6 +4,10 @@ import Home from '../views/Home.vue';
 import Register from '../views/Register.vue';
 import Login from '../views/Login.vue';
 import Documents from '../views/Documents.vue';
+import Bulletins from '../views/Bulletins.vue';
+import Partenaires from '../views/Activites.vue';
+import Profil from '../views/Profil.vue';
+import Sign from '../views/Sign.vue';
 
 Vue.use(VueRouter)
 
@@ -27,6 +31,26 @@ const routes = [
     path: '/documents',
     name: 'Documents',
     component: Documents
+  },
+  {
+    path: '/bulletins',
+    name: 'Bulletins',
+    component: Bulletins
+  },
+  {
+    path: '/partenaires',
+    name: 'Partenaires',
+    component: Partenaires
+  },
+  {
+    path: '/profil',
+    name: 'Profil',
+    component: Profil
+  },
+  {
+    path: '/sign',
+    name: 'Sign',
+    component: Sign
   }
   // {
   //   path: '/register',

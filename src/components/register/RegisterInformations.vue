@@ -17,31 +17,6 @@
                 action="/register"
                 method="post"
                 novalidate="true">
-                <div class="form__labels">
-                    <label class="form__label">Votre sex</label>
-                </div>
-                <div class="form__group form__group-radio">
-                    <div class="form__radio">
-                        <input class="form__input form__input-radio"
-                            type="radio"
-                            id="man"
-                            name="sex"
-                            value="man"
-                            v-model="sex">
-                        <label class="form__label form__label-radio"
-                            for="man">Homme</label>
-                    </div>
-                    <div class="form__radio">
-                        <input class="form__input form__input-radio"
-                            type="radio"
-                            id="woman"
-                            name="sex"
-                            value="woman"
-                            v-model="sex">
-                        <label for="woman"
-                                class="form__label form__label-radio">Femme</label>
-                    </div>
-                </div>
                 <div class="form__group">
                     <div class="form__labels">
                         <label class="form__label"
@@ -93,7 +68,7 @@
                             <div class="form__buttons form__buttons-double layout__flex">
                     <button class="button button-prev"
                             type="button"
-                            @click="prev">Précédent</button>
+                            @click.stop.prevent="previous">Précédent</button>
                     <button class="button button-submit"
                             type="submit"
                             @click.stop.prevent="next">Suivant</button>
@@ -112,7 +87,6 @@ export default {
     },
     data() {
         return {
-            sex: "",
             lastname: "",
             firstname: "",
             birthday: "",
@@ -121,24 +95,37 @@ export default {
         }
     },
     methods: {
-        next: function () {
-            let user = JSON.parse(localStorage.getItem('user'));
-            user['nom'] = this.lastname;
-            user['prenom'] = this.firstname;
-            user['lieuNaissance'] = this.birthcity;
-            user['dateNaissance'] = this.birthday;
-
-            localStorage.setItem('user', JSON.stringify(user));
-            this.$emit('form', 'next');
+        next() {
+            this.$emit('form', {
+                action: 'next',
+                form: 'informations',
+                lastname: this.lastname,
+                firstname: this.firstname,
+                birthcity: this.birthcity,
+                birthday: this.birthday
+            });
         },
-        prev: function () {
-            this.$emit('form', 'prev')
+        previous() {
+            this.$emit('form', {
+                action: 'previous'
+            })
         }
     },
-    created() {
-        this.firstname = this.user['prenom'];
-        this.lastname = this.user['nom'];
-        this.birthcity = this.user['lieuNaissance'];
+    mounted() {
+        if (this.user !== null) {
+            if (this.user['nom'] !== null) {
+                this.lastname = this.user['nom'];
+            }
+            if (this.user['prenom'] !== null) {
+                this.firstname = this.user['prenom'];
+            }
+            if (this.user['dateNaissance'] !== null) {
+                this.birthday = this.user['dateNaissance'];
+            }
+            if (this.user['lieuNaissance'] !== null) {
+                this.birthcity = this.user['lieuNaissance'];
+            }
+        }
     }
 }
 </script>

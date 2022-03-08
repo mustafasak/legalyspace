@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import "./plugins/firebase.js";
 import router from './router';
 import './registerServiceWorker'
+import Lottie from "vue-lottie";
+import VueFriendlyIframe from 'vue-friendly-iframe';
+
 Vue.config.productionTip = false;
+Vue.use(VueFriendlyIframe);
+Vue.component("lottie", Lottie);
 Vue.use(VueRouter);
 
 export const loadedGoogleMapsAPI = new Promise( (resolve) => {

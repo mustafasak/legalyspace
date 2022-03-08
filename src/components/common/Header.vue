@@ -13,40 +13,54 @@
                     src="@/assets/logo.svg"
                     alt="Logo LegalySpace" />
             </router-link>
-            <div id="header__navigation">
+            <!-- <div id="header__navigation">
                 <router-link class="link" to="/login">Connexion</router-link>
-            </div>
+            </div> -->
         </div>
+        <Menu v-if="showMenu"/>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'Header',
-        data() {
-            return {
-                deferredPrompt: null
-            };
-        },
-        created() {
-            window.addEventListener("beforeinstallprompt", e => {
-                e.preventDefault();
-                // Stash the event so it can be triggered later.
-                this.deferredPrompt = e;
-            });
-            window.addEventListener("appinstalled", () => {
-                this.deferredPrompt = null;
-            });
-        },
-        methods: {
-            async dismiss() {
-                this.deferredPrompt = null;
-            },
-            async install() {
-                this.deferredPrompt.prompt();
-            }
+import Menu from '../common/Menu.vue';
+
+export default {
+    name: 'Header',
+    components: {
+        Menu
+    },
+    props: {
+        menu: Boolean
+    },
+    data() {
+        return {
+            deferredPrompt: null
         }
+    },
+    computed: {
+        showMenu() {
+            return this.menu
+        }
+    },
+    methods: {
+        async dismiss() {
+            this.deferredPrompt = null;
+        },
+        async install() {
+            this.deferredPrompt.prompt();
+        }
+    },
+    created() {
+        window.addEventListener("beforeinstallprompt", e => {
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            this.deferredPrompt = e;
+        });
+        window.addEventListener("appinstalled", () => {
+            this.deferredPrompt = null;
+        });
     }
+}
 </script>
 
 <style>
@@ -57,6 +71,7 @@
         top: 0;
         padding: 1em 0;
         border-radius: 0 0 12px 12px;
+        z-index: 4;
     }
 
     @media screen and (min-width: 768px) {
@@ -66,14 +81,12 @@
     }
 
     .header__logo {
-        width: 150px;
+        width: 124px;
     }
 
     .header__inner {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: center;
         padding: 0 1.5em;
     }
 

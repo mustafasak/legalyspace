@@ -33,7 +33,7 @@
                 <div class="form__buttons form__buttons-double layout__flex">
                     <button class="button button-prev"
                         type="button"
-                        @click="prev">Précédent</button>
+                        @click.stop.prevent="previous">Précédent</button>
                     <button class="button button-submit"
                         type="submit"
                         @click.stop.prevent="next">Suivant</button>
@@ -49,6 +49,9 @@
 
 export default {
     name: 'RegisterAdresse',
+    props: {
+        user: null
+    },
     data() {
         return {
             address: ""
@@ -58,20 +61,30 @@ export default {
         loadedGoogleMapsAPI: function() {}
     },
     methods: {
-        initMap: function() {
-
+        next() {
+            this.$emit('form', {
+                action: 'next',
+                form: 'address',
+                address: this.address,
+            });
         },
-        next: function () {
-            this.$emit('form', 'next');
-        },
-        prev: function () {
-            this.$emit('form', 'prev')
+        previous() {
+            this.$emit('form', {
+                action: 'previous'
+            })
         }
     },
     mounted() {
+        if (this.user !== null) {
+            if (this.user['adresse'] !== null) {
+                this.address = this.user['adresse'];
+            }
+        }
+    }
+    //mounted() {
     //     loadedGoogleMapsAPI.then(()=> {
     //         new google.maps.places.Autocomplete(this.$refs["origin"]);
     //    });
-    },
+    //},
 }
 </script>

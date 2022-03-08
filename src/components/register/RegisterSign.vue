@@ -51,10 +51,39 @@
             <p class="text__body">Les personnes physiques dont la signature a été utilisée pour signer le présent document ainsi que tous les documents à venir sont réputés être dûment habilitées à signer pour le compte de l’entité juridique elles appartiennent et à engager juridiquement cette dernière. A ce titre, il appartient à chaque Partie de veiller à ce que le signataire dispose des délégations de pouvoirs nécessaires. Le défaut d’une Partie dans la gestion de ces délégations de pouvoirs ne pourra pas être opposé à l’autre Partie pour faire échec à la valeur juridique du document signé ni de la présente convention.</p>
             </div>
         </div>
-                    <div class="form__buttons form__buttons-double layout__fixed">
+                <div v-if="actions == 'REQUEST_SIGN'"
+                     class="form__buttons form__buttons-double layout__fixed">
+                     <p>Formulaire qui s'affiche quand il clique sur "signer".</p>
                     <button class="button button-prev"
                             type="button"
-                            @click="prev">Précédent</button>
+                            @click="previous">Refuser</button>
+                    <button class="button button-submit"
+                            type="button"
+                            @click.stop.prevent="sign()">Signer</button>
+                </div>
+                <div v-else-if="actions == 'REQUEST_CODE'"
+                     class="form__buttons form__buttons-double layout__fixed">
+                    <button class="button button-prev"
+                            type="button"
+                            @click="previous">Refuser</button>
+                    <button class="button button-submit"
+                            type="button"
+                            @click.stop.prevent="sign()">Signer</button>
+                </div>
+                <div v-else-if="actions == 'SUBMIT_CODE'"
+                     class="form__buttons form__buttons-double layout__fixed">
+                    <button class="button button-prev"
+                            type="button"
+                            @click="previous">Refuser</button>
+                    <button class="button button-submit"
+                            type="button"
+                            @click.stop.prevent="sign()">Signer</button>
+                </div>
+                <div v-if="actions == 'READING'"
+                     class="form__buttons form__buttons-double layout__fixed">
+                    <button class="button button-prev"
+                            type="button"
+                            @click="previous">Précédent</button>
                     <button class="button button-prev"
                             type="button"
                             @click.stop.prevent="next(reading)">Lire la suite</button>
@@ -69,19 +98,32 @@ export default {
     data() {
         return {
             address: "",
-            reading: 0
+            reading: 0,
+            actions: 'READING'
         }
     },
     methods: {
-        next: function (event) {
+        sign() {
+            console.log("NEED SIGN")
+        },
+        next(event) {
             event = event + 1;
             this.reading = event;
 
-            console.log(window);
+            console.log(this.reading);
+            console.log(document.getElementsByTagName('body')[0].scrollHeight);
+            console.log(window.innerHeight);
+            if ((this.reading * window.innerHeight) > document.getElementsByTagName('body')[0].scrollHeight) {
+                console.log('finish');
+                this.actions = "REQUEST_SIGN"
+            }
             window.scrollTo(0, this.reading * window.innerHeight);
+
         },
-        prev: function () {
-            this.$emit('form', 'prev')
+        previous() {
+            this.$emit('form', {
+                action: 'previous'
+            })
         }
     }
 }

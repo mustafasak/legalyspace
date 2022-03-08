@@ -17,8 +17,8 @@
     "reset-css": "^5.0.1",
     "vue": "^2.6.11",
     "vue-google-autocomplete": "^1.1.2",
-    "vue-router": "^3.5.3",
-    "vuefire": "^2.2.5"
+    "vue-lottie": "^0.2.1",
+    "vue-router": "^3.5.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -29,6 +29,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "vue-friendly-iframe": "^0.20.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
