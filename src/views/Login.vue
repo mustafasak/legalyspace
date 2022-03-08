@@ -62,7 +62,7 @@
 
 <script>
 import "../plugins/firebase.js";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import axios from 'axios';
 import CustomInput from "../components/input.vue";
 
@@ -102,6 +102,7 @@ export default {
                     password: this.password
                 }
             ).then(response => {
+                console.log(response.data);
                 localStorage.setItem('NavigSession', JSON.stringify((response.data.NavigSession)));
                 signInWithEmailAndPassword(auth, "mustafa.sak@outlook.fr", "testtest")
                             .then((/*userCredential*/) => {
@@ -138,6 +139,13 @@ export default {
                 this.password = event.value;
             }
         }
+    },
+    mounted() {
+         signOut(auth).then(() => {
+                localStorage.removeItem('NavigSession');
+            }).catch((error) => {
+                console.error(error);
+            });
     }
 }
 </script>
