@@ -67,7 +67,6 @@ export default {
             // https://firebase.google.com/docs/reference/js/firebase.User
             //const uid = user.uid;
             //console.log(uid);
-            console.log(localStorage.getItem('NavigSession'));
             if (localStorage.getItem('NavigSession') !== undefined) {
               this.api.get(`https://demo.legalyspace.com/LYSLogique/api/userState`, {
                         headers: {

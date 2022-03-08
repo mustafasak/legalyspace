@@ -2,10 +2,10 @@
     <div class="customInput">
         <div class="customInput__labels">
             <label class="customInput__label"
-                   for="email">{{ options.label }}</label>
+                   :for="options.name">{{ options.label }}</label>
         </div>
         <div :class="this.addClass('group')">
-            <span :class="this.addClass('placeholder')" for="email">{{ options.placeholder }}</span>
+            <span :class="this.addClass('placeholder')" >{{ options.placeholder }}</span>
             <template v-if="isFocused">
                 <img class="customInput__clear"
                      src="@/assets/icons/clear.png"

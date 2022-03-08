@@ -141,11 +141,11 @@ export default {
         }
     },
     mounted() {
-         signOut(auth).then(() => {
-                localStorage.removeItem('NavigSession');
-            }).catch((error) => {
-                console.error(error);
-            });
+        //  signOut(auth).then(() => {
+        //         localStorage.removeItem('NavigSession');
+        //     }).catch((error) => {
+        //         console.error(error);
+        //     });
     }
 }
 </script>
