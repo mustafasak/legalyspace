@@ -62,7 +62,7 @@
 
 <script>
 import "../plugins/firebase.js";
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import axios from 'axios';
 import CustomInput from "../components/input.vue";
 
