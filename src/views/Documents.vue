@@ -5,18 +5,15 @@
 </template>
 
 <script>
-import { getAuth, signOut } from "firebase/auth";
-
-const auth = getAuth();
+import router from '../router';
 
 export default {
     name: "Documents",
     methods: {
         logout() {
-            signOut(auth).then(() => {
-                localStorage.removeItem('NavigSession');
-            }).catch((error) => {
-                console.error(error);
+            localStorage.removeItem('NavigSession');
+            router.push({
+                path: '/login'
             });
         }
     }

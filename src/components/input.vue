@@ -5,7 +5,7 @@
                    :for="options.name">{{ options.label }}</label>
         </div>
         <div :class="this.addClass('group')">
-            <span :class="this.addClass('placeholder')" >{{ options.placeholder }}</span>
+            <span :class="this.addClass('placeholder')">{{ options.placeholder }}</span>
             <template v-if="isFocused">
                 <img class="customInput__clear"
                      src="@/assets/icons/clear.png"
@@ -78,7 +78,20 @@ export default {
             return this.error;
         }
     },
+    watch: {
+        options(changed) {
+            if (changed.value !== null && changed.value !== '' && changed.value !== undefined) {
+                this.setValue(changed.value);
+                this.handleChange();
+            }
+        }
+    },
     methods: {
+
+        setValue(value) {
+            this.input = value;
+        },
+
         /**
          * Input validation onChange event
          */
@@ -91,7 +104,7 @@ export default {
                 value: this.input
             });
 
-            if ( this.input !== null && this.input !== '') {
+            if ( this.input !== null && this.input !== ''  && this.input !== undefined) {
                     this.filled = true;
 
                 if ( this.options.type == 'username' || this.options.type == 'email' ) {
@@ -122,6 +135,12 @@ export default {
                         return;
                     } 
                 } else if ( this.options.type == 'date' ) {
+                    if ( this.input.length >= 1 ) {
+                        this.successState();
+
+                        return;
+                    } 
+                } else if ( this.options.type == 'tel' ) {
                     if ( this.input.length >= 1 ) {
                         this.successState();
 

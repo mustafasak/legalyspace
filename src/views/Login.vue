@@ -62,11 +62,9 @@
 
 <script>
 import "../plugins/firebase.js";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import axios from 'axios';
 import CustomInput from "../components/input.vue";
-
-const auth = getAuth();
+import router from '../router';
 
 export default {
     name: 'Login',
@@ -101,22 +99,15 @@ export default {
                     userName: this.username,
                     password: this.password
                 }
-            ).then(response => {
-                console.log(response.data);
-                localStorage.setItem('NavigSession', JSON.stringify((response.data.NavigSession)));
-                signInWithEmailAndPassword(auth, "mustafa.sak@outlook.fr", "testtest")
-                            .then((/*userCredential*/) => {
-                                this.loading = false;
-                                // Signed in 
-                                // const user = userCredential.user;
-                                // console.log(user);
-                        })
-                        .catch((error) => {
-                            console.error(error);
-                        });
+            ).then(response => {    
                 if (response.data.erreur === true) {
                     this.loading = false;
                     this.erreur = response.data.erreurMessage;
+                } else {
+                    localStorage.setItem('NavigSession', JSON.stringify((response.data.NavigSession)));
+                    router.push({
+                        path: '/documents'
+                    })
                 }
             })
             .catch((error) => {

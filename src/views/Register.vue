@@ -15,15 +15,17 @@
             <p class="text__body">Nous allons créer votre espace légale ensemble, renseignez votre e-mail personnel et créez un nouveau mot de passe.</p>
         </div>
           <CustomInput :options="{
-            type: 'email',
-            name: 'email',
-            id: 'email',
-            autocomplete: 'email',
-            label: 'Votre adresse email',
-            placeholder: 'Entrer votre adresse email.',
-            action: [false],
-            typeable: false}"
-            @valueChange="getValue($event)"></CustomInput>
+                          type: 'email',
+                          name: 'email',
+                          id: 'email',
+                          autocomplete: 'email',
+                          label: 'Votre adresse email',
+                          placeholder: 'Entrer votre adresse email.',
+                          action: [false],
+                          typeable: false,
+                          value: this.email
+                        }"
+                        @valueChange="getValue($event)"></CustomInput>
           <CustomInput :options="{
             type: 'password',
             name: 'password',
@@ -66,7 +68,8 @@
             label: 'Votre nom',
             placeholder: 'Entrer votre nom.',
             action: [false],
-            typeable: false}"
+            typeable: false,
+            value: this.lastname}"
             @valueChange="getValue($event)"></CustomInput>
         <CustomInput :options="{
             type: 'text',
@@ -76,7 +79,8 @@
             label: 'Votre prenom',
             placeholder: 'Entrer votre prenom.',
             action: [false],
-            typeable: false}"
+            typeable: false,
+            value: this.firstname}"
             @valueChange="getValue($event)"></CustomInput>
         <CustomInput :options="{
             type: 'date',
@@ -86,7 +90,8 @@
             label: 'Votre date de naissance',
             placeholder: '',
             action: [false],
-            typeable: false}"
+            typeable: false,
+            value: this.birthday}"
             @valueChange="getValue($event)"></CustomInput>
         <CustomInput :options="{
             type: 'text',
@@ -96,7 +101,8 @@
             label: 'Votre ville de naissance',
             placeholder: 'Entrer votre ville de naissance',
             action: [false],
-            typeable: false}"
+            typeable: false,
+            value: this.birthcity}"
             @valueChange="getValue($event)"></CustomInput>
         <CustomInput :options="{
             type: 'text',
@@ -106,7 +112,8 @@
             label: 'Votre pays de naissance',
             placeholder: 'Entrer votre pays de naissance',
             action: [false],
-            typeable: false}"
+            typeable: false,
+            value: this.birthcontry}"
             @valueChange="getValue($event)"></CustomInput>
     </div>
     <div v-show="step == 4">
@@ -130,7 +137,8 @@
             label: 'Votre adresse de résidence',
             placeholder: 'Entrer votre adresse ',
             action: [false],
-            typeable: false}"
+            typeable: false,
+            value: this.address}"
             @valueChange="getValue($event)"></CustomInput>
         <CustomInput :options="{
             type: 'text',
@@ -140,7 +148,8 @@
             label: 'Votre ville de résidence',
             placeholder: 'Entrer ville',
             action: [false],
-            typeable: false}"
+            typeable: false,
+            value: this.cityName}"
             @valueChange="getValue($event)"></CustomInput>
         <CustomInput :options="{
             type: 'text',
@@ -150,7 +159,8 @@
             label: 'Votre code postale de résidence',
             placeholder: 'Entrer votre code postal',
             action: [false],
-            typeable: false}"
+            typeable: false,
+            value: this.cityCode}"
             @valueChange="getValue($event)"></CustomInput>
     </div>
     <div class="form__buttons form__buttons-double layout__flex">
@@ -160,7 +170,17 @@
                 :disabled="step > 2 ? false : true">Précédent</button>
         <button class="button button-submit"
                 type="submit"
-                @click.stop.prevent="next">Suivant</button>
+                @click.stop.prevent="next">Suivant
+                <svg class="button__spinner"
+                  viewBox="0 0 50 50"
+                  v-show="loading">
+                  <circle class="path"
+                          cx="25" cy="25" r="20"
+                          fill="none"
+                          stroke-width="5">
+                  </circle>
+              </svg>
+          </button>
     </div>
   </div>
 </template>
@@ -170,10 +190,6 @@ import router from '../router';
 import Step from '../components/common/Step.vue';
 import CustomInput from "../components/input.vue";
 import axios from 'axios';
-import "../plugins/firebase.js";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
-const auth = getAuth();
 
 export default {
   name: 'Register',
@@ -198,6 +214,8 @@ export default {
       birthcontry: null,
       password: null,
       passwordConfirm: null,
+      idPartenaireInvitant: null,
+      raisonSocialeInvitant: null,
     }
   },
   computed: {
@@ -205,7 +223,7 @@ export default {
       return parseInt(this.$route.query['step']) || 2;
     },
     code() {
-      return this.$route.query['code'];
+      return this.$route.query['code'] || null;
     }
   },
   methods: {
@@ -223,6 +241,10 @@ export default {
         password: this.password,
         passwordConfirm: this.passwordConfirm,
         cgvAgreed: true,
+        codePartenaire: this.code !== null ? this.code : '',
+        confirmMiseRelation: true,
+        idPartenaireInvitant: this.idPartenaireInvitant,
+        raisonSocialeInvitant: this.raisonSocialeInvitant
       }
     },
 
@@ -250,6 +272,8 @@ export default {
         this.birthday = response.data.dateNaissance;
         this.birthcity = response.data.lieuNaissance;
         this.birthcontry = response.data.paysNaissance;
+        this.idPartenaireInvitant = response.data.idPartenaireInvitant;
+        this.raisonSocialeInvitant = response.data.raisonSocialeInvitant;
       })
       .catch(e => {
           console.error(e);
@@ -257,10 +281,10 @@ export default {
     },
 
     registration() {
+        this.loading = true;
         this.initUser();
         this.api.post(`https://demo.legalyspace.com/LYSLogique/api/inscription/validerInscriptionParticulier`, this.user)
            .then(response => {
-              console.log(response);
               
               if (response.data['erreur'] !== undefined) {
                 console.log("ERROR_ON_REGISTRATION")
@@ -269,23 +293,15 @@ export default {
         
                 this.api.post(`https://demo.legalyspace.com/LYSLogique/api/inscription/finaliserInscriptionParticulier`, this.user)
                    .then(response => {
-                      console.log(response.data);
                       localStorage.setItem('NavigSession', JSON.stringify((response.data.NavigSession)));
             
                     if (response.data['erreur'] !== undefined) {
                       console.log("ERROR_ON_REGISTRATION");
                     } else {
                       console.log("REGISTRATION_IS_DONE");
-                      signInWithEmailAndPassword(auth, "mustafa.sak@outlook.fr", "testtest")
-                          .then((/*userCredential*/) => {
-                              this.loading = true;
-                              // Signed in 
-                              // const user = userCredential.user;
-                              // console.log(user);
+                      router.push({
+                          path: '/documents'
                       })
-                      .catch((error) => {
-                          console.error(error);
-                      });
                     }
               }).catch(e => {
                 console.error(e);

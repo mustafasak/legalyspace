@@ -15,11 +15,6 @@ import router from './router';
 import 'reset-css';
 import axios from 'axios';
 
-// Firebase Services
-import './plugins/firebase';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-
-const auth = getAuth();
 
 export default {
   name: 'App',
@@ -29,8 +24,7 @@ export default {
   },
   data() {
     return {
-      api: null
-    }
+      api: null}
   },
   computed: {
     webview() {
@@ -46,52 +40,46 @@ export default {
       } else {
         return true;
       }
-    }
+    },
+    session() {
+      return JSON.parse(this.auth);
+    },
   },
   watch: {
-    $route() {}
-  },
-  mounted() {
-    this.api = axios.create({
-        baseURL : 'https://demo.legalyspace.com/LYSLogique/api/',
-        withCredentials : true,
-        headers : {        
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    });
-
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
-            //const uid = user.uid;
-            //console.log(uid);
-            if (localStorage.getItem('NavigSession') !== undefined) {
-              this.api.get(`https://demo.legalyspace.com/LYSLogique/api/userState`, {
-                        headers: {
-                            'Authorization': JSON.parse(localStorage.getItem('NavigSession'))
-                        }
-                    }).then((response) => {
-                        if (response.data.hasConventionASigner === true) {
-                            console.log("NEED_CONVENTION_SIGN");
-                            router.push({
-                              path: '/sign'
-                          })
-                        }  else {
-                          router.push({
-                              path: '/documents'
-                          })
-                        }
-                    });
+    $route() {
+      if ( JSON.parse(localStorage.getItem('NavigSession')) !== null && JSON.parse(localStorage.getItem('NavigSession')) !== undefined) {
+            this.api = axios.create({
+            baseURL : 'https://demo.legalyspace.com/LYSLogique/api/',
+            withCredentials : true,
+            headers : {        
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
-            // ...
-        } else {
+        });
+        this.api.get(`https://demo.legalyspace.com/LYSLogique/api/userState`, {
+                  headers: {
+                      'Authorization': JSON.parse(localStorage.getItem('NavigSession'))
+                  }
+              }).then((response) => {
+                  if (response.data.hasConventionASigner === true) {
+                      console.log("NEED_CONVENTION_SIGN");
+                      router.push({
+                        path: '/sign'
+                    })
+                  }  else {
+                    router.push({
+                        path: '/documents'
+                    })
+                  }
+              });
+      } else {
+        if (this.$route.path !== '/login' && this.$route.path !== '/register' && this.$route.path !== '/') {
           router.push({
               path: '/login'
           })
-        }
-    });
+        } 
+      }
+    }
   }
 }
 </script>
@@ -257,16 +245,6 @@ export default {
 
 .button:disabled {
   opacity: 0.5;
-}
-
-.form__buttons.layout__fixed {
-  background: white;
-  box-shadow: 0 0px 14px 0 rgb(0 0 0 / 10%);
-  display: flex;
-  bottom: 0;
-  left: 0;
-  padding: 1.5em 1.5em 2em 1.5em;
-  border-radius: 12px 12px 0 0;
 }
 
 .form__labels {
