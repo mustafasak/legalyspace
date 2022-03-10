@@ -137,7 +137,7 @@ export default {
                         this.idSMS = response.data.idSMS;
                         if (this.actions == "SUBMIT_CODE") {
                             router.push({
-                                path: '/documents'
+                                path: '/list'
                             });
                         } else {
                             this.actions = "SUBMIT_CODE"

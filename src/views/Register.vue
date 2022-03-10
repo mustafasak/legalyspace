@@ -300,7 +300,7 @@ export default {
                     } else {
                       console.log("REGISTRATION_IS_DONE");
                       router.push({
-                          path: '/documents'
+                          path: '/list'
                       })
                     }
               }).catch(e => {

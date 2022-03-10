@@ -64,12 +64,14 @@ export default {
                   if (response.data.hasConventionASigner === true) {
                       console.log("NEED_CONVENTION_SIGN");
                       router.push({
-                        path: '/sign'
+                        path: '/document'
                     })
                   }  else {
-                    router.push({
-                        path: '/documents'
-                    })
+                    if (this.$route.path.includes('/document/') == false && this.$route.path !== '/profil') {
+                      router.push({
+                          path: '/list'
+                      })
+                    }
                   }
               });
       } else {

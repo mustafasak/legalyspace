@@ -3,11 +3,11 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Register from '../views/Register.vue';
 import Login from '../views/Login.vue';
-import Documents from '../views/Documents.vue';
+import List from '../views/List.vue';
 import Bulletins from '../views/Bulletins.vue';
 import Partenaires from '../views/Activites.vue';
 import Profil from '../views/Profil.vue';
-import Sign from '../views/Sign.vue';
+import Document from '../views/Document.vue';
 
 Vue.use(VueRouter)
 
@@ -28,9 +28,9 @@ const routes = [
     component: Login
   },
   {
-    path: '/documents',
-    name: 'Documents',
-    component: Documents
+    path: '/list',
+    name: 'List',
+    component: List
   },
   {
     path: '/bulletins',
@@ -48,9 +48,9 @@ const routes = [
     component: Profil
   },
   {
-    path: '/sign',
-    name: 'Sign',
-    component: Sign
+    path: '/document/:id',
+    name: 'Document',
+    component: Document
   }
   // {
   //   path: '/register',

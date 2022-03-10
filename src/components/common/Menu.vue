@@ -1,7 +1,7 @@
 <template>
     <div class="menu">
         <div class="menu__item"> 
-            <router-link class="menu__link" to="/documents">
+            <router-link class="menu__link" to="/list">
                 <img src="@/assets/icons/documents.png" />
                 <div class="menu__label">Documents</div>
             </router-link>

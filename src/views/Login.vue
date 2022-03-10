@@ -61,7 +61,6 @@
 
 
 <script>
-import "../plugins/firebase.js";
 import axios from 'axios';
 import CustomInput from "../components/input.vue";
 import router from '../router';
@@ -106,7 +105,7 @@ export default {
                 } else {
                     localStorage.setItem('NavigSession', JSON.stringify((response.data.NavigSession)));
                     router.push({
-                        path: '/documents'
+                        path: '/list'
                     })
                 }
             })
@@ -132,11 +131,6 @@ export default {
         }
     },
     mounted() {
-        //  signOut(auth).then(() => {
-        //         localStorage.removeItem('NavigSession');
-        //     }).catch((error) => {
-        //         console.error(error);
-        //     });
     }
 }
 </script>
