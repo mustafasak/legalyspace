@@ -238,7 +238,7 @@ export default {
                     style = 'customInput__group customInput__group-error';
                 }
                 if (this.focused) {
-                    style = 'customInput__group customInput__group-focus';
+                    style = 'customInput__group customInput__group-focused';
                 }
 
                 return  style;

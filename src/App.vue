@@ -64,7 +64,7 @@ export default {
                   if (response.data.hasConventionASigner === true) {
                       console.log("NEED_CONVENTION_SIGN");
                       router.push({
-                        path: '/document'
+                        path: '/document/1'
                     })
                   }  else {
                     if (this.$route.path.includes('/document/') == false && this.$route.path !== '/profil') {
